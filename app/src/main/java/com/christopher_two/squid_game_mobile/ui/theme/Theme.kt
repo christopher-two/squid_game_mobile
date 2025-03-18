@@ -16,7 +16,7 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = onPrimary,
     secondary = secondary,
     onSecondary = onSecondary,
-    background = background
+    background = background,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -35,8 +35,7 @@ fun Squid_game_mobileTheme(
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) DarkColorScheme else LightColorScheme
         }
         darkTheme -> DarkColorScheme
         else -> LightColorScheme

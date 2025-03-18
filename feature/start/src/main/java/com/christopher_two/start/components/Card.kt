@@ -33,7 +33,10 @@ import androidx.compose.ui.unit.sp
 import kotlin.math.sqrt
 
 @Composable
-internal fun ThreeDCard() {
+internal fun ThreeDCard(
+    text: String,
+    onClick: () -> Unit
+) {
     var isFrontSideVisible by remember { mutableStateOf(true) }
     val rotationY by animateFloatAsState(
         targetValue = if (isFrontSideVisible) 0f else 180f,
@@ -44,7 +47,10 @@ internal fun ThreeDCard() {
 
     Box(
         modifier = Modifier
-            .clickable { isFrontSideVisible = !isFrontSideVisible }
+            .clickable {
+                isFrontSideVisible = !isFrontSideVisible
+                onClick()
+            }
             .graphicsLayer {
                 this.rotationY = rotationY
                 cameraDistance = 8 * density
@@ -53,7 +59,7 @@ internal fun ThreeDCard() {
         if (rotationY <= 90f) {
             CardFront()
         } else {
-            CardBack()
+            CardBack(text)
         }
     }
 }
@@ -110,7 +116,7 @@ private fun CardFront() {
 }
 
 @Composable
-private fun CardBack() {
+private fun CardBack(text: String) {
     Box(
         modifier = Modifier
             .size(400.dp, 200.dp)
@@ -123,7 +129,7 @@ private fun CardBack() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "010-241",
+            text = text,
             color = Color.Black,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
@@ -136,5 +142,5 @@ private fun CardBack() {
 @Preview
 @Composable
 private fun PreviewThreeDCard() {
-    ThreeDCard()
+    ThreeDCard(""){}
 }

@@ -12,6 +12,7 @@ fun NavControllerStart(
     navController: NavHostController
 ) {
     NavHost(navController = navController, startDestination = RoutesStart.Start.route) {
-        composable(RoutesStart.Start.route) { StartScreen() }
+        composable(RoutesStart.Start.route) { StartScreen(navController) }
+        composable(RoutesStart.Login.route) {  }
     }
 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class StartViewModel: ViewModel() {
     data class StartState(
-        val name: String = ""
+        var isVisible: Boolean = false
     )
     private val _state = MutableStateFlow(StartState())
     val state = _state.asStateFlow()
