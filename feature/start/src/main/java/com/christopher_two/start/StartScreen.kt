@@ -47,7 +47,7 @@ internal fun Screen(
                 onClick = {
                     if (state.isVisible) {
                         clipboardManager.setPrimaryClip(
-                            ClipData.newPlainText("code", "010-241")
+                            ClipData.newPlainText("code", "1414")
                         )
                         navController.navigate(RoutesStart.Login.route)
                     } else

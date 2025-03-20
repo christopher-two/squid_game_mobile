@@ -28,7 +28,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     ) {
                         NavControllerStart(
-                            navController = rememberNavController()
+                            navController = rememberNavController(),
+                            context = applicationContext
                         )
                     }
                 }
