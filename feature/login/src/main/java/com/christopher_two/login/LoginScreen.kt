@@ -19,16 +19,20 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.christopher_two.login.components.OtpActions
 import com.christopher_two.login.components.OtpInputField
+import com.christopher_two.utils.routes.RoutesStart
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun LoginScreen() = Screen()
+fun LoginScreen(navController: NavController) = Screen(navController = navController)
 
 @Composable
 internal fun Screen(
     viewModel: LoginViewModel = koinViewModel(),
+    navController: NavController
 ) {
     val state by viewModel.state.collectAsState()
     val focusRequesters = remember {
@@ -55,7 +59,7 @@ internal fun Screen(
     OtpScreen(
         state = state,
         focusRequesters = focusRequesters,
-        modifier = Modifier.background(colorScheme.background),
+        modifier = Modifier.background(colorScheme.onSecondary),
         onAction = { action ->
             when (action) {
                 is OtpActions.OnEnterNumber -> {
@@ -69,6 +73,10 @@ internal fun Screen(
             viewModel.onAction(action)
         }
     )
+
+    if (state.isValid == true) {
+        navController.navigate(RoutesStart.Camera.route)
+    }
 }
 
 @Composable

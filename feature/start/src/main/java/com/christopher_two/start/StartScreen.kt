@@ -38,12 +38,12 @@ internal fun Screen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = colorScheme.background),
+            .background(color = colorScheme.onSecondary),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         content = {
             ThreeDCard(
-                text = "010-241",
+                text = "1414",
                 onClick = {
                     if (state.isVisible) {
                         clipboardManager.setPrimaryClip(

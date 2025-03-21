@@ -60,7 +60,7 @@ internal fun OtpInputField(
         modifier = modifier
             .border(
                 width = 1.dp,
-                color = colorScheme.secondary,
+                color = colorScheme.onBackground,
             )
             .background(Color.Transparent),
         contentAlignment = Alignment.Center,
@@ -73,12 +73,12 @@ internal fun OtpInputField(
                         onNumberChanged(newNumber.toIntOrNull())
                     }
                 },
-                cursorBrush = SolidColor(colorScheme.secondary),
+                cursorBrush = SolidColor(colorScheme.onBackground),
                 singleLine = true,
                 textStyle = TextStyle(
                     textAlign = TextAlign.Center,
                     fontSize = 36.sp,
-                    color = colorScheme.secondary,
+                    color = colorScheme.onBackground,
                 ),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
@@ -89,7 +89,7 @@ internal fun OtpInputField(
                         Text(
                             text = "-",
                             textAlign = TextAlign.Center,
-                            color = colorScheme.secondary,
+                            color = colorScheme.onBackground,
                             fontWeight = FontWeight.Light,
                             fontSize = 36.sp,
                             modifier = Modifier
