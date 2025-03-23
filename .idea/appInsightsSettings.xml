@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.christopher_two.squid_game_mobile" />
+                  <option name="mobileSdkAppId" value="1:492230502051:android:d7c3870fbfe630d2398116" />
+                  <option name="projectId" value="squid-game-backend" />
+                  <option name="projectNumber" value="492230502051" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

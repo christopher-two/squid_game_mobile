@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -39,7 +40,9 @@ dependencies {
     implementation(project(":feature:start"))
     implementation(project(":feature:login"))
     implementation(project(":feature:camera"))
-    implementation(project(":utils"))
+    implementation(project(":feature:home"))
+    implementation(project(":network:firebase"))
+    implementation(project(":shared:utils"))
 
     //KOIN
     implementation(platform(libs.koin.bom))

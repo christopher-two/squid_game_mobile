@@ -20,10 +20,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.christopher_two.login.components.OtpActions
 import com.christopher_two.login.components.OtpInputField
-import com.christopher_two.utils.routes.RoutesStart
+import com.shared.utils.routes.RoutesStart
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

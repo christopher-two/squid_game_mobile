@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.christopher_two.start.components.ThreeDCard
-import com.christopher_two.utils.routes.RoutesStart
+import com.shared.utils.routes.RoutesStart
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

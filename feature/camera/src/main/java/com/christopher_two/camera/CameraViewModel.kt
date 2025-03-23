@@ -15,7 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
@@ -79,13 +78,7 @@ class CameraViewModel(
                                 e
                             )
                         } finally {
-                            withContext(Dispatchers.Main) {
-                                update {
-                                    copy(
-                                        image = null,
-                                    )
-                                }
-                            }
+                            image.close()
                         }
                     }
                 }

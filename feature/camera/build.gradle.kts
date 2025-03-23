@@ -45,7 +45,7 @@ dependencies {
     implementation(libs.tensorflow.lite.gpu)
 
     //MODULES
-    implementation(project(":utils"))
+    implementation(project(":shared:utils"))
 
     //KOIN
     implementation(platform(libs.koin.bom))

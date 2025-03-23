@@ -14,12 +14,16 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/api" />
             <option value="$PROJECT_DIR$/feature/camera" />
+            <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/login" />
             <option value="$PROJECT_DIR$/feature/start" />
-            <option value="$PROJECT_DIR$/utils" />
+            <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/network/firebase" />
+            <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/shared/ui" />
+            <option value="$PROJECT_DIR$/shared/utils" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
