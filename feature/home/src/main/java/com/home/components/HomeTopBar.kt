@@ -37,7 +37,7 @@ internal fun HomeTopBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .background(colorScheme.onBackground),
+            .background(colorScheme.primary),
         content = {
             Row(
                 modifier = Modifier
@@ -54,12 +54,15 @@ internal fun HomeTopBar(
                         modifier = Modifier
                             .size(80.dp)
                             .clip(DiamondShape())
-                            .border(2.dp,  colorScheme.background, DiamondShape())
+                            .border(2.dp,  Color.White, DiamondShape())
+                            .background(
+                                color = Color.White,
+                            )
                     )
 
                     Text(
                         text = player?.numPlayer?.toString() ?: "100",
-                        color = colorScheme.background,
+                        color = Color.White,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.bodyLarge,
                         fontSize = 19.sp,

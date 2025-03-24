@@ -33,7 +33,7 @@ fun NavControllerStart(
             arguments = listOf(navArgument("args") { type = StringType })
         ) { args ->
             val args = args.arguments?.getString("args").toString()
-            HomeScreen(args = args, viewModel = koinViewModel())
+            HomeScreen(args = args)
         }
     }
 }

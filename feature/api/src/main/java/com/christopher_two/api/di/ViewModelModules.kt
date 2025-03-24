@@ -15,5 +15,5 @@ val viewModelModule: Module
         viewModelOf(::StartViewModel)
         viewModelOf(::LoginViewModel)
         viewModelOf(::CameraViewModel)
-        viewModelOf(::HomeViewModel).bind(HomeInterface::class)
+        viewModelOf(::HomeViewModel)
     }
