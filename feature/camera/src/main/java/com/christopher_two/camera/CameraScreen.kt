@@ -17,6 +17,7 @@ import com.christopher_two.camera.components.CameraPreview
 import com.christopher_two.camera.components.PermissionDenied
 import com.christopher_two.camera.components.Permissions
 import com.christopher_two.camera.components.PixelatedSmileScreen
+import com.shared.utils.enums.KeysTensorflow
 import com.shared.utils.routes.RoutesStart
 import kotlinx.coroutines.delay
 import org.koin.compose.viewmodel.koinViewModel
@@ -25,8 +26,10 @@ import org.koin.compose.viewmodel.koinViewModel
 fun CameraScreen(
     viewModel: CameraViewModel = koinViewModel(),
     context: Context,
-    navController: NavController
+    navController: NavController,
+    model: KeysTensorflow
 ) {
+    viewModel.loadData(model.model)
     var isCompleteAnimation by remember { mutableStateOf(true) }
     val state by viewModel.state.collectAsState()
     val hasFrontCamera = remember(context) {

@@ -2,15 +2,17 @@ package com.christopher_two.login
 
 import androidx.lifecycle.ViewModel
 import com.christopher_two.login.components.OtpActions
+import com.shared.utils.enums.KeysTensorflow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlin.enums.EnumEntries
 
 class LoginViewModel : ViewModel() {
     data class LoginState(
         val code: List<Int?> = (1..4).map { null },
         val focusedIndex: Int? = 0,
-        val isValid: Boolean? = false,
-        val codeValid: String = "1414",
+        val isValid: KeysTensorflow? = null,
+        val codeValid: EnumEntries<KeysTensorflow> = KeysTensorflow.entries,
         val isLoading: Boolean = false
     )
 
@@ -28,11 +30,7 @@ class LoginViewModel : ViewModel() {
             }
 
             is OtpActions.OnChangedFieldFocused -> {
-                update {
-                    copy(
-                        focusedIndex = action.index
-                    )
-                }
+                update { copy(focusedIndex = action.index) }
             }
 
             OtpActions.OnKeyboardBack -> {
@@ -40,13 +38,7 @@ class LoginViewModel : ViewModel() {
                 update {
                     copy(
                         focusedIndex = previousFocusedIndex,
-                        code = this.code.mapIndexed { index, number ->
-                            if (index == previousFocusedIndex) {
-                                null
-                            } else {
-                                number
-                            }
-                        }
+                        code = this.code.mapIndexed { index, number -> if (index == previousFocusedIndex) null else number }
                     )
                 }
             }
@@ -55,13 +47,13 @@ class LoginViewModel : ViewModel() {
 
     private fun enterNumber(number: Int?, index: Int) {
         val newCode = _state.value.code.mapIndexed { currentIndex, currentNumber ->
-            if (currentIndex == index) {
-                number
-            } else {
-                currentNumber
-            }
+            if (currentIndex == index) number else currentNumber
         }
         val wasNumberRemoved = number == null
+        val allFieldsFilled = newCode.none { it == null }
+        val isValidCode = if (allFieldsFilled) {
+            _state.value.codeValid.firstOrNull { it.key == newCode.joinToString("") }
+        } else null
         update {
             copy(
                 code = newCode,
@@ -73,10 +65,8 @@ class LoginViewModel : ViewModel() {
                         currentCode = this.code
                     ) ?: index
                 },
-                isValid = if (newCode.none { it == null }) {
-                    update { copy(isLoading = true) }
-                    newCode.joinToString("") == _state.value.codeValid
-                } else null
+                isValid = isValidCode,
+                isLoading = false // Adjust based on actual async requirements
             )
         }
     }

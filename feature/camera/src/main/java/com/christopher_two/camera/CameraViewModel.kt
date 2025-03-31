@@ -29,7 +29,9 @@ class CameraViewModel(
         _state.value = _state.value.update()
     }
 
-    init {
+    fun loadData(
+        model: String
+    ) {
         viewModelScope.launch {
             val options = ImageClassifier.ImageClassifierOptions.builder()
                 .setMaxResults(1)
@@ -39,7 +41,7 @@ class CameraViewModel(
                 copy(
                     classifier = ImageClassifier.createFromFileAndOptions(
                         context,
-                        "model.tflite",
+                        model,
                         options
                     ),
                 )
