@@ -29,14 +29,14 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import com.home.R
 import com.home.states.HomeUiState
-import com.home.viewmodel.HomeViewModel
+import com.home.screen.HomeViewModel
+import com.network.firebase.models.Player
 import com.shared.ui.DiamondShape
 
 @Composable
 internal fun HomeContent(
     padding: PaddingValues,
-    viewModel: HomeViewModel,
-    state: HomeUiState
+    player: Player
 ) {
     LazyColumn(
         modifier = Modifier
@@ -58,14 +58,14 @@ internal fun HomeContent(
                         .background(colorScheme.onBackground)
                 ) {
                     Image(
-                        painter = rememberAsyncImagePainter(model = state.player?.image),
+                        painter = rememberAsyncImagePainter(model = player.image),
                         contentDescription = "Image Player",
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
 
                     Text(
-                        text = "${state.player?.numPlayer ?: 127}",
+                        text = player.numPlayer,
                         color = Color.White,
                         fontSize = 40.sp,
                         fontWeight = FontWeight.Bold,
@@ -91,7 +91,7 @@ internal fun GameOver() {
             val context = LocalContext.current
             val sound = MediaPlayer.create(
                 context,
-                R.raw.elimination
+                R.raw.eliminado
             )
             sound.start()
             Text(

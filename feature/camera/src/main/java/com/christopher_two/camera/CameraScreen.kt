@@ -29,7 +29,10 @@ fun CameraScreen(
     navController: NavController,
     model: KeysTensorflow
 ) {
-    viewModel.loadData(model.model)
+    LaunchedEffect(Unit) {
+        viewModel.loadData(model.model)
+        viewModel.update { copy(isLoading = false) }
+    }
     var isCompleteAnimation by remember { mutableStateOf(true) }
     val state by viewModel.state.collectAsState()
     val hasFrontCamera = remember(context) {

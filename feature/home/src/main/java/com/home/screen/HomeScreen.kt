@@ -6,14 +6,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import com.home.components.GameOver
 import com.home.components.HomeContent
 import com.home.components.Winner
-import com.home.viewmodel.HomeViewModel
 import com.shared.ui.components.BackgroundAnimated
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -34,6 +36,9 @@ internal fun Screen(
     args: String,
     viewModel: HomeViewModel,
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.loadData(args = args)
+    }
     val state by viewModel.state.collectAsState()
     Scaffold(
         modifier = Modifier
@@ -45,11 +50,18 @@ internal fun Screen(
                     Winner()
                     Log.d("HomeScreen", "Winner")
                 } else if (statusPlayer.isAlive == true) {
-                    HomeContent(
-                        padding = padding,
-                        viewModel = viewModel,
-                        state = state
-                    )
+                    state.player?.also {
+                        HomeContent(
+                            padding = padding,
+                            player = it
+                        )
+                    } ?: run {
+                        Text(
+                            text = "Loading...",
+                            textAlign = TextAlign.Center,
+                            color = colorScheme.onBackground
+                        )
+                    }
                     Log.d("HomeScreen", "Alive")
                 } else {
                     GameOver()

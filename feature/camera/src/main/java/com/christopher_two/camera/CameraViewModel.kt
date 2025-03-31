@@ -32,22 +32,18 @@ class CameraViewModel(
     fun loadData(
         model: String
     ) {
-        viewModelScope.launch {
-            val options = ImageClassifier.ImageClassifierOptions.builder()
-                .setMaxResults(1)
-                .build()
+        val options = ImageClassifier.ImageClassifierOptions.builder()
+            .setMaxResults(1)
+            .build()
 
-            update {
-                copy(
-                    classifier = ImageClassifier.createFromFileAndOptions(
-                        context,
-                        model,
-                        options
-                    ),
-                )
-            }
-        }.invokeOnCompletion {
-            update { copy(isLoading = false) }
+        update {
+            copy(
+                classifier = ImageClassifier.createFromFileAndOptions(
+                    context,
+                    model,
+                    options
+                ),
+            )
         }
     }
 

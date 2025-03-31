@@ -1,4 +1,4 @@
-package com.home.viewmodel
+package com.home.screen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -6,14 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.home.states.HomeUiState
 import com.network.firebase.firestore.Firestore
 import com.network.firebase.models.Player
-import com.network.firebase.models.StatusPlayer
 import com.network.firebase.realtime.RealtimeDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -23,26 +19,24 @@ class HomeViewModel(
 
     private val _state = MutableStateFlow(HomeUiState())
     val state: StateFlow<HomeUiState> = _state.asStateFlow()
-        .onStart { loadData() }
-        .stateIn(
-            scope = viewModelScope,
-            started = WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = HomeUiState()
-        )
 
-    private fun loadData() {
-        update { copy(isLoading = true) }
-        viewModelScope.launch {
-            val player = getPlayer("Yk3Rn5LN0w7GM6vVMVr3")
-            val updates = mapOf("isActive" to true)
-            realtimeDatabase.updatePlayerStatus(
-                updates = updates,
-                playerId = "Yk3Rn5LN0w7GM6vVMVr3"
+    suspend fun loadData(
+        args: String
+    ) {
+        update { HomeUiState(isLoading = true) }
+        val player = getPlayer(args)
+        val updates = mapOf("isActive" to true)
+        realtimeDatabase.updatePlayerStatus(
+            updates = updates,
+            playerId = args
+        )
+        listenToStatusPlayer(args)
+        update {
+            copy(
+                player = player,
+                isLoading = false
             )
-            update { copy(player = player) }
-            listenToStatusPlayer("Yk3Rn5LN0w7GM6vVMVr3")
         }
-        update { copy(isLoading = false) }
     }
 
     fun update(update: HomeUiState.() -> HomeUiState) {
