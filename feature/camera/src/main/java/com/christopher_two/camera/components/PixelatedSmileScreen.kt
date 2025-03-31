@@ -4,6 +4,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -22,7 +23,7 @@ fun PixelatedSmileScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorScheme.onSecondary)
+            .background(colorScheme.background)
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -37,6 +38,7 @@ fun PixelatedSmileScreen() {
                 fontSize = 40.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
+                fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             
@@ -44,7 +46,7 @@ fun PixelatedSmileScreen() {
             Box(
                 modifier = Modifier
                     .size(240.dp)
-                    .background(colorScheme.onSecondary),
+                    .background(colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
                 PixelatedSmileAnimation()
@@ -53,6 +55,7 @@ fun PixelatedSmileScreen() {
                     color = Color.White,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .offset(x = 0.dp, y = (50).dp)
@@ -64,7 +67,7 @@ fun PixelatedSmileScreen() {
 
 @Composable
 fun PixelatedSmileAnimation() {
-    val pixelColor = Color(0xFF80FFD0)
+    val pixelColor = colorScheme.onBackground
     
     // Animación de la sonrisa
     val smileProgress by rememberInfiniteTransition().animateFloat(

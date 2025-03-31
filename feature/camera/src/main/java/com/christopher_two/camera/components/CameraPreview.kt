@@ -7,9 +7,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -19,10 +22,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.christopher_two.camera.CameraViewModel
+import com.shared.ui.DiamondShape
 
 @Composable
 internal fun CameraPreview(
@@ -44,14 +51,23 @@ internal fun CameraPreview(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(colorScheme.onSecondary)
+            .background(colorScheme.background)
             .clickable { if (isControllerReady) viewModel.takePhoto(controller) },
         content = {
+            Text(
+                text = "Click!!!",
+                color = colorScheme.onBackground,
+                fontSize = 50.sp,
+                fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 60.dp)
+            )
             AndroidView(
                 modifier = Modifier
                     .size(400.dp)
-                    .background(colorScheme.onSecondary)
-                    .clip(shape = CircleShape),
+                    .background(colorScheme.background)
+                    .clip(shape = DiamondShape()),
                 factory = { context ->
                     PreviewView(context).apply {
                         layoutParams = ViewGroup.LayoutParams(

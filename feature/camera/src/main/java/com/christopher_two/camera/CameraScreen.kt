@@ -35,6 +35,7 @@ fun CameraScreen(
             val cameraProvider = cameraProviderFuture.get()
             cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
         } catch (e: Exception) {
+            e.printStackTrace()
             false
         }
     }

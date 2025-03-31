@@ -38,7 +38,7 @@ internal fun Screen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = colorScheme.onSecondary),
+            .background(color = colorScheme.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         content = {

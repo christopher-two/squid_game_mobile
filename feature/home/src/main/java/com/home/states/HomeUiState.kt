@@ -8,4 +8,5 @@ data class HomeUiState(
     val player: Player? = null,
     val statusPlayer: StatusPlayer? = null,
     val gameStatus: GameStatus? = null,
+    val isLoading: Boolean = false
 )

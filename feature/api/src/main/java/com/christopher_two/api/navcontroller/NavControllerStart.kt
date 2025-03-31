@@ -19,7 +19,7 @@ fun NavControllerStart(
     navController: NavHostController,
     context: Context
 ) {
-    NavHost(navController = navController, startDestination = RoutesStart.Start.route) {
+    NavHost(navController = navController, startDestination = "${RoutesStart.Home.route}/0") {
         composable(RoutesStart.Start.route) { StartScreen(navController) }
         composable(RoutesStart.Login.route) { LoginScreen(navController) }
         composable(RoutesStart.Camera.route) {

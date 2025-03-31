@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "492230502051",
+    "firebase_url": "https://squid-game-backend-default-rtdb.firebaseio.com",
+    "project_id": "squid-game-backend",
+    "storage_bucket": "squid-game-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492230502051:android:ebe9d73ee343a24c398116",
+        "android_client_info": {
+          "package_name": "com.christopher_two.squid_game_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5tvjKnTNNNScPes_Wp3Ssl0OCh4QOCP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

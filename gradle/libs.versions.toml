@@ -1,12 +1,13 @@
 [versions]
+accompanistSystemuicontroller = "0.31.3-beta"
+coreSplashscreen = "1.0.1"
 agp = "8.9.0"
-android-compileSdk = "35"
-android-minSdk = "30"
 cameraCore = "1.5.0-alpha06"
 cameraCamera2 = "1.5.0-alpha06"
 cameraLifecycle = "1.5.0-alpha06"
 cameraVideo = "1.5.0-alpha06"
 coilCompose = "3.1.0"
+firebaseBom = "32.8.0"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -14,7 +15,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
-composeBom = "2025.03.00"
+composeBom = "2025.03.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 navigationCompose = "2.8.9"
@@ -22,13 +23,17 @@ koin = "4.1.0-Beta5"
 tensorflowLiteGpuDelegatePlugin = "0.4.0"
 tensorflowLiteGpu = "2.9.0"
 tensorflowLiteTaskVision = "0.4.0"
-media3CommonKtx = "1.5.1"
+media3CommonKtx = "1.6.0"
 uiTooling = "1.7.8"
 googleGmsGoogleServices = "4.4.2"
-firebaseFirestore = "25.1.3"
-firebaseDatabase = "21.0.0"
+dataStore = "1.1.4"
+play-services = "18.6.0"
 
 [libraries]
+play-services-base = { group = "com.google.android.gms", name = "play-services-base", version.ref = "play-services" }
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
+datastore-preference = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "cameraCore" }
 androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "cameraVideo" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraLifecycle" }
@@ -38,6 +43,7 @@ androidx-camera-mlkit-vision = { module = "androidx.camera:camera-mlkit-vision",
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -64,8 +70,9 @@ tensorflow-lite-gpu-delegate-plugin = { module = "org.tensorflow:tensorflow-lite
 tensorflow-lite-task-vision = { module = "org.tensorflow:tensorflow-lite-task-vision", version.ref = "tensorflowLiteTaskVision" }
 androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
-firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
-firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

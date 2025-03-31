@@ -10,7 +10,8 @@ class LoginViewModel : ViewModel() {
         val code: List<Int?> = (1..4).map { null },
         val focusedIndex: Int? = 0,
         val isValid: Boolean? = false,
-        val codeValid: String = "1414"
+        val codeValid: String = "1414",
+        val isLoading: Boolean = false
     )
 
     private val _state = MutableStateFlow(LoginState())
@@ -73,6 +74,7 @@ class LoginViewModel : ViewModel() {
                     ) ?: index
                 },
                 isValid = if (newCode.none { it == null }) {
+                    update { copy(isLoading = true) }
                     newCode.joinToString("") == _state.value.codeValid
                 } else null
             )

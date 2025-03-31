@@ -46,6 +46,7 @@ dependencies {
 
     //MODULES
     implementation(project(":shared:utils"))
+    implementation(project(":shared:ui"))
 
     //KOIN
     implementation(platform(libs.koin.bom))

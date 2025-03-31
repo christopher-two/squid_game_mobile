@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.navigation.compose)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.core.splashscreen)
 
     //KOIN
     implementation(platform(libs.koin.bom))
@@ -68,6 +70,7 @@ dependencies {
     implementation(libs.koin.viewmodel)
 
     //FIREBASE
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.database)
 

@@ -1,11 +1,12 @@
 package com.network.firebase.realtime
 
-import com.google.firebase.database.ValueEventListener
 import com.network.firebase.models.StatusPlayer
+import kotlinx.coroutines.flow.Flow
 
 interface RealtimeDatabase {
     fun observePlayerStatus(
         playerId: String,
-        callback: (StatusPlayer?) -> Unit
-    ): ValueEventListener
+    ): Flow<StatusPlayer>
+
+    fun updatePlayerStatus(updates: Map<String, Any>, playerId: String)
 }

@@ -1,38 +1,20 @@
 package com.home.screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.home.components.FloatingActionButton
+import com.home.components.GameOver
 import com.home.components.HomeContent
-import com.home.components.HomeTopBar
-import com.home.states.HomeUiState
+import com.home.components.Winner
 import com.home.viewmodel.HomeViewModel
-import kotlinx.coroutines.launch
+import com.shared.ui.components.BackgroundAnimated
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -40,11 +22,9 @@ fun HomeScreen(
     args: String,
     viewModel: HomeViewModel = koinViewModel()
 ) {
-    val state by viewModel.state.collectAsState()
     Screen(
         args = args,
         viewModel = viewModel,
-        state = state,
     )
 }
 
@@ -53,73 +33,40 @@ fun HomeScreen(
 internal fun Screen(
     args: String,
     viewModel: HomeViewModel,
-    state: HomeUiState,
 ) {
+    val state by viewModel.state.collectAsState()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        topBar = { HomeTopBar(player = state.player) },
+            .background(color = colorScheme.background),
         content = { padding ->
-            HomeContent(
-                padding = padding,
-                viewModel = viewModel,
-                state = state
-            )
-        },
-        floatingActionButton = { FloatingActionButton() },
-        bottomBar = { BottomAppBarContent() }
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BottomAppBarContent() {
-    val scope = rememberCoroutineScope()
-    val bottomSheetState = rememberModalBottomSheetState()
-    var isSheetOpen by remember { mutableStateOf(false) }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .offset(y = (40).dp)
-            .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
-                shape = MaterialTheme.shapes.medium
-            ),
-        contentAlignment = Alignment.TopCenter,
-        content = {
-            Button(
-                modifier = Modifier.fillMaxWidth(.8f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = Color.White
-                ),
-                shape = MaterialTheme.shapes.medium,
-                onClick = {
-                    scope.launch {
-                        if (isSheetOpen) bottomSheetState.hide() else bottomSheetState.show()
-                        isSheetOpen = !isSheetOpen
-                    }
-                },
-                content = {
-                    Text(
-                        text = "Player Information",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+            state.statusPlayer?.also { statusPlayer ->
+                if (statusPlayer.isWinner == true) {
+                    Winner()
+                    Log.d("HomeScreen", "Winner")
+                } else if (statusPlayer.isAlive == true) {
+                    HomeContent(
+                        padding = padding,
+                        viewModel = viewModel,
+                        state = state
                     )
+                    Log.d("HomeScreen", "Alive")
+                } else {
+                    GameOver()
+                    Log.d("HomeScreen", "GameOver")
                 }
-            )
+            } ?: run {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            brush = BackgroundAnimated(
+                                colorPrimary = colorScheme.primary,
+                                colorSecondary = colorScheme.secondary
+                            )
+                        )
+                )
+            }
         }
     )
-
-    ModalBottomSheet(
-        onDismissRequest = {
-            scope.launch { bottomSheetState.hide() }
-        },
-        sheetState = bottomSheetState,
-    ) {
-
-    }
 }

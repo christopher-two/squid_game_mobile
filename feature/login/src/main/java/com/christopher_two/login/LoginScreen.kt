@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,26 +56,32 @@ internal fun Screen(
         }
     }
 
-    OtpScreen(
-        state = state,
-        focusRequesters = focusRequesters,
-        modifier = Modifier.background(colorScheme.onSecondary),
-        onAction = { action ->
-            when (action) {
-                is OtpActions.OnEnterNumber -> {
-                    if (action.number != null) {
-                        focusRequesters[action.index].freeFocus()
+    if (!state.isLoading) {
+        OtpScreen(
+            state = state,
+            focusRequesters = focusRequesters,
+            modifier = Modifier.background(colorScheme.background),
+            onAction = { action ->
+                when (action) {
+                    is OtpActions.OnEnterNumber -> {
+                        if (action.number != null) {
+                            focusRequesters[action.index].freeFocus()
+                        }
                     }
-                }
 
-                else -> Unit
+                    else -> Unit
+                }
+                viewModel.onAction(action)
             }
-            viewModel.onAction(action)
-        }
-    )
+        )
+    } else {
+        CircularProgressIndicator()
+    }
 
     if (state.isValid == true) {
         navController.navigate(RoutesStart.Camera.route)
+    } else if (state.isValid == false) {
+        viewModel.update { copy(isLoading = false) }
     }
 }
 
