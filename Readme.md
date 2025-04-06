@@ -16,4 +16,8 @@ El objetivo general de este proyecto es **diseñar, desarrollar e implementar un
 * **Integración Completa:** Asegurar una comunicación fluida y eficaz entre el sistema físico, la aplicación de escritorio y la aplicación móvil para una experiencia de usuario coherente.
 * **Excelencia Técnica:** Esforzarse por alcanzar la mayor calidad posible en el diseño, construcción y programación de cada uno de los componentes (hardware embebido, software de escritorio, software móvil), optimizando su rendimiento y fiabilidad.
 
+### Screens
+[Smile](images/smile.png)
+[Home](images/home.png)
+
 **Link a la documentacion completa:** [Documentación](https://squid-game-backend.web.app/introduccion.html)
