@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":feature:api"))
     implementation(project(":network:firebase"))
     implementation(project(":shared:ui"))
+    implementation(project(":data:datastore"))
 
     //COMPOSE
     implementation(libs.androidx.core.ktx)

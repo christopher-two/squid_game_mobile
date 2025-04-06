@@ -18,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -32,6 +34,7 @@ import com.home.states.HomeUiState
 import com.home.screen.HomeViewModel
 import com.network.firebase.models.Player
 import com.shared.ui.DiamondShape
+import com.shared.ui.components.BackgroundAnimated
 
 @Composable
 internal fun HomeContent(
@@ -40,7 +43,7 @@ internal fun HomeContent(
 ) {
     LazyColumn(
         modifier = Modifier
-            .padding(padding)
+            .background(colorScheme.onPrimary)
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,8 +54,11 @@ internal fun HomeContent(
                         .size(400.dp)
                         .clip(DiamondShape())
                         .border(
-                            width = 4.dp,
-                            color = colorScheme.onBackground,
+                            width = 9.dp,
+                            brush = BackgroundAnimated(
+                                colorPrimary = colorScheme.primary,
+                                colorSecondary = colorScheme.secondary
+                            ),
                             shape = DiamondShape()
                         )
                         .background(colorScheme.onBackground)
@@ -61,18 +67,23 @@ internal fun HomeContent(
                         painter = rememberAsyncImagePainter(model = player.image),
                         contentDescription = "Image Player",
                         modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
+                        colorFilter = ColorFilter.tint(colorScheme.primary.copy(alpha = .5f), blendMode = BlendMode.ColorBurn)
                     )
 
                     Text(
                         text = player.numPlayer,
                         color = Color.White,
-                        fontSize = 40.sp,
+                        fontSize = 70.sp,
                         fontWeight = FontWeight.Bold,
+                        fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
                             .padding(bottom = 32.dp)
-                            .graphicsLayer { translationY = 40f }
+                            .graphicsLayer {
+                                translationY = 40f
+                                rotationX = 10f
+                            }
                     )
                 }
             }

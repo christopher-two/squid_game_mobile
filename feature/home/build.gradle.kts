@@ -38,6 +38,7 @@ dependencies {
     implementation(project(":shared:utils"))
     implementation(project(":shared:ui"))
     implementation(project(":network:firebase"))
+    implementation(project(":data:datastore"))
 
     //KOIN
     implementation(platform(libs.koin.bom))

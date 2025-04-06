@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "492230502051",
-    "firebase_url": "https://squid-game-backend-default-rtdb.firebaseio.com",
-    "project_id": "squid-game-backend",
-    "storage_bucket": "squid-game-backend.firebasestorage.app"
+    "project_number": "444711264974",
+    "firebase_url": "https://horus-d67b2-default-rtdb.firebaseio.com",
+    "project_id": "horus-d67b2",
+    "storage_bucket": "horus-d67b2.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:492230502051:android:ebe9d73ee343a24c398116",
+        "mobilesdk_app_id": "1:444711264974:android:d5f0371e05b1febec3269f",
         "android_client_info": {
           "package_name": "com.christopher_two.squid_game_mobile"
         }
@@ -16,7 +16,45 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD5tvjKnTNNNScPes_Wp3Ssl0OCh4QOCP0"
+          "current_key": "AIzaSyA-OBfm2uCY-2tUs0Y4973T9OZ_7Wt4Pb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444711264974:android:19bb5fa5166cbab5c3269f",
+        "android_client_info": {
+          "package_name": "com.example.horus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-OBfm2uCY-2tUs0Y4973T9OZ_7Wt4Pb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444711264974:android:6101259e548ac61ac3269f",
+        "android_client_info": {
+          "package_name": "com.example.horusfleetmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-OBfm2uCY-2tUs0Y4973T9OZ_7Wt4Pb0"
         }
       ],
       "services": {

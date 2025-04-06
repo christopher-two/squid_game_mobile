@@ -1,5 +1,6 @@
 package com.christopher_two.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.christopher_two.login.components.OtpActions
 import com.shared.utils.enums.KeysTensorflow
@@ -52,7 +53,10 @@ class LoginViewModel : ViewModel() {
         val wasNumberRemoved = number == null
         val allFieldsFilled = newCode.none { it == null }
         val isValidCode = if (allFieldsFilled) {
-            _state.value.codeValid.firstOrNull { it.key == newCode.joinToString("") }
+            _state.value.codeValid.firstOrNull {
+                Log.d("LoginViewModel", "enterNumber: ${it.key}")
+                it.key == newCode.joinToString("")
+            }
         } else null
         update {
             copy(

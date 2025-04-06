@@ -17,7 +17,7 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily(Font(R.font.pixel)),
+        fontFamily = FontFamily(Font(R.font.minecraft)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
     )

@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,6 +22,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.christopher_two.login.components.OtpActions
 import com.christopher_two.login.components.OtpInputField
@@ -60,7 +63,7 @@ internal fun Screen(
         OtpScreen(
             state = state,
             focusRequesters = focusRequesters,
-            modifier = Modifier.background(colorScheme.background),
+            modifier = Modifier.background(colorScheme.onPrimary),
             onAction = { action ->
                 when (action) {
                     is OtpActions.OnEnterNumber -> {
@@ -100,6 +103,12 @@ internal fun OtpScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Text(
+            text = "enter your code",
+            color = colorScheme.onBackground,
+            fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
+            fontSize = 30.sp
+        )
         Row(
             modifier = Modifier.padding(16.dp),
             horizontalArrangement = Arrangement.Center,

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -59,7 +60,7 @@ internal fun OtpInputField(
     Box(
         modifier = modifier
             .border(
-                width = 1.dp,
+                width = 2.dp,
                 color = colorScheme.onBackground,
             )
             .background(Color.Transparent),
@@ -79,6 +80,7 @@ internal fun OtpInputField(
                     textAlign = TextAlign.Center,
                     fontSize = 36.sp,
                     color = colorScheme.onBackground,
+                    fontFamily = MaterialTheme.typography.bodyMedium.fontFamily
                 ),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
@@ -92,6 +94,7 @@ internal fun OtpInputField(
                             color = colorScheme.onBackground,
                             fontWeight = FontWeight.Light,
                             fontSize = 36.sp,
+                            fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,
                             modifier = Modifier
                                 .fillMaxSize()
                                 .wrapContentSize()

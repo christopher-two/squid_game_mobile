@@ -23,7 +23,7 @@ fun PixelatedSmileScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorScheme.background)
+            .background(colorScheme.primary)
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -34,7 +34,7 @@ fun PixelatedSmileScreen() {
             // Texto superior en coreano ("카메라를 보세요" - "Mira a la cámara")
             Text(
                 text = "카메라를 보세요",
-                color = Color.White,
+                color = colorScheme.onBackground,
                 fontSize = 40.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -46,13 +46,13 @@ fun PixelatedSmileScreen() {
             Box(
                 modifier = Modifier
                     .size(240.dp)
-                    .background(colorScheme.background),
+                    .background(colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
                 PixelatedSmileAnimation()
                 Text(
                     text = "SMILE",
-                    color = Color.White,
+                    color = colorScheme.onBackground,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = MaterialTheme.typography.bodyMedium.fontFamily,

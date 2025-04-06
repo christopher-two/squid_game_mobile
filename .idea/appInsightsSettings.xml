@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.christopher_two.squid_game_mobile" />
-                  <option name="mobileSdkAppId" value="1:492230502051:android:ebe9d73ee343a24c398116" />
-                  <option name="projectId" value="squid-game-backend" />
-                  <option name="projectNumber" value="492230502051" />
+                  <option name="mobileSdkAppId" value="1:444711264974:android:d5f0371e05b1febec3269f" />
+                  <option name="projectId" value="horus-d67b2" />
+                  <option name="projectNumber" value="444711264974" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

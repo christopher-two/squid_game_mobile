@@ -30,7 +30,10 @@ fun CameraScreen(
     model: KeysTensorflow
 ) {
     LaunchedEffect(Unit) {
-        viewModel.loadData(model.model)
+        viewModel.loadData(
+            model = model.model,
+            labelFile = model.label
+        )
         viewModel.update { copy(isLoading = false) }
     }
     var isCompleteAnimation by remember { mutableStateOf(true) }
@@ -75,9 +78,9 @@ fun CameraScreen(
         )
     else PermissionDenied()
 
-    if (state.classificationResult != "Esperando...") {
+    if (state.classificationNumber != "") {
         navController.navigate(
-            route = "${RoutesStart.Home.route}/${state.classificationResult}",
+            route = "${RoutesStart.Home.route}/${state.classificationNumber}",
         )
     }
 }

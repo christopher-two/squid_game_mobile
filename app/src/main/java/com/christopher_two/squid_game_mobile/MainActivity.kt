@@ -10,7 +10,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
@@ -32,7 +31,10 @@ class MainActivity : ComponentActivity() {
         val realtimeDatabase: RealtimeDatabase = RealtimeDatabaseImpl()
         realtimeDatabase.updatePlayerStatus(
             updates = updates,
-            playerId = "Yk3Rn5LN0w7GM6vVMVr3"
+            playerId = this@MainActivity.applicationContext.getSharedPreferences(
+                "session",
+                MODE_PRIVATE
+            ).getString("numberClass", "").toString()
         )
     }
 
@@ -56,7 +58,17 @@ class MainActivity : ComponentActivity() {
                     Surface(modifier = Modifier.fillMaxSize()) {
                         NavControllerStart(
                             navController = rememberNavController(),
-                            context = this.applicationContext
+                            context = this.applicationContext,
+                            route = if (this.applicationContext.getSharedPreferences(
+                                    "session",
+                                    MODE_PRIVATE
+                                ).getString("numberClass", "").toString().isEmpty()
+                            ) "start" else "home/${
+                                this.applicationContext.getSharedPreferences(
+                                    "session",
+                                    MODE_PRIVATE
+                                ).getString("numberClass", "").toString()
+                            }"
                         )
                     }
                 }

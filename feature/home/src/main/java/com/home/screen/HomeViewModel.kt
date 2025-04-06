@@ -1,8 +1,10 @@
 package com.home.screen
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.data.datastore.Datastore
 import com.home.states.HomeUiState
 import com.network.firebase.firestore.Firestore
 import com.network.firebase.models.Player
@@ -11,10 +13,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
 
 class HomeViewModel(
     private val firestore: Firestore,
-    private val realtimeDatabase: RealtimeDatabase
+    private val realtimeDatabase: RealtimeDatabase,
+    private val context: Context
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeUiState())
@@ -25,6 +29,13 @@ class HomeViewModel(
     ) {
         update { HomeUiState(isLoading = true) }
         val player = getPlayer(args)
+        context.getSharedPreferences(
+            "session",
+            Context.MODE_PRIVATE
+        ).edit { putString("numberClass", args) }
+        Datastore(
+            context = context
+        )
         val updates = mapOf("isActive" to true)
         realtimeDatabase.updatePlayerStatus(
             updates = updates,

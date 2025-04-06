@@ -19,11 +19,15 @@ import com.shared.utils.routes.RoutesStart
 @Composable
 fun NavControllerStart(
     navController: NavHostController,
-    context: Context
+    context: Context,
+    route: String = RoutesStart.Start.route
 ) {
-    NavHost(navController = navController, startDestination = "${RoutesStart.Start.route}") {
-        composable(RoutesStart.Start.route) { StartScreen(navController) }
-        composable(RoutesStart.Login.route) { LoginScreen(navController) }
+    NavHost(
+        navController = navController,
+        startDestination = route
+    ) {
+        composable(route = RoutesStart.Start.route) { StartScreen(navController) }
+        composable(route = RoutesStart.Login.route) { LoginScreen(navController) }
         composable(
             route = "${RoutesStart.Camera.route}/{args}",
             arguments = listOf(navArgument("args") {
@@ -43,7 +47,7 @@ fun NavControllerStart(
         ) { args ->
             val args = args.arguments?.getString("args").toString()
             Log.d("NavControllerStart", "args: $args")
-            HomeScreen(args = args)
+            HomeScreen(args = args, navController = navController)
         }
     }
 }

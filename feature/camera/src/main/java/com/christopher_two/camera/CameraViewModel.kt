@@ -29,9 +29,13 @@ class CameraViewModel(
         _state.value = _state.value.update()
     }
 
+    private lateinit var classLabels: List<String>
+
     fun loadData(
-        model: String
+        model: String,
+        labelFile: String
     ) {
+        classLabels = context.assets.open(labelFile).bufferedReader().useLines { it.toList() }
         val options = ImageClassifier.ImageClassifierOptions.builder()
             .setMaxResults(1)
             .build()
@@ -50,7 +54,17 @@ class CameraViewModel(
     fun classify(bitmap: Bitmap) {
         val image = TensorImage.fromBitmap(bitmap)
         val results = _state.value.classifier!!.classify(image)
-        update { copy(classificationResult = if (results.isNotEmpty() && results[0].categories.isNotEmpty()) results[0].categories[0].label else "No se pudo clasificar") }
+        val classIndex = results[0].categories[0].index
+        val className = classLabels.getOrNull(classIndex) ?: "Desconocido"
+        Log.d("CameraViewModel", "Clase detectada: ${className.substring(2)}")
+        val index =
+            Players.entries.find { it.namePlayer == className.substring(2) }?.labelIndex ?: -1
+        update {
+            copy(
+                classificationResult = className,
+                classificationNumber = index.toString(),
+            )
+        }
     }
 
     fun takePhoto(
@@ -87,5 +101,17 @@ class CameraViewModel(
                 }
             }
         )
+    }
+
+    enum class Players(val labelIndex: Int, val namePlayer: String) {
+        Player1(0, "Christhopher"),
+        Player2(1, "Juan"),
+        Player3(2, "Oswaldo"),
+        Player4(3, "Zabdiel"),
+        Player5(4, "Manuel"),
+        Player6(5, "Brandon"),
+        Player7(6, "Gamboa"),
+        Player8(7, "Luis"),
+        Player9(8, "Jesus"),
     }
 }
