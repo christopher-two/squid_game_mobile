@@ -17,7 +17,7 @@ El objetivo general de este proyecto es **diseñar, desarrollar e implementar un
 * **Excelencia Técnica:** Esforzarse por alcanzar la mayor calidad posible en el diseño, construcción y programación de cada uno de los componentes (hardware embebido, software de escritorio, software móvil), optimizando su rendimiento y fiabilidad.
 
 ### Screens
-[Smile](images/smile.png)
-[Home](images/home.png)
+![Smile](images/smile.png) { width = 200px; height = 400px; }
+![Home](images/home.png) { width = 200px; height = 400px; }
 
 **Link a la documentacion completa:** [Documentación](https://squid-game-backend.web.app/introduccion.html)
