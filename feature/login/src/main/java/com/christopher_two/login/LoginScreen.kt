@@ -81,13 +81,10 @@ internal fun Screen(
         CircularProgressIndicator()
     }
 
-    if (state.isValid != null) {
-        navController.navigate(
-            route = "${RoutesStart.Camera.route}/${state.isValid}",
-        )
-    } else {
+    if (state.isValid != null)
+        navController.navigate(route = RoutesStart.Camera.route)
+    else
         viewModel.update { copy(isLoading = false) }
-    }
 }
 
 @Composable

@@ -55,10 +55,13 @@ internal fun Screen(
     viewModel: HomeViewModel,
     navController: NavController
 ) {
+    val state by viewModel.state.collectAsState()
     LaunchedEffect(Unit) {
         viewModel.loadData(args = args)
     }
-    val state by viewModel.state.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModel.listenToStatusPlayer(playerId = args)
+    }
     val context = LocalContext.current
     Scaffold(
         modifier = Modifier
@@ -111,7 +114,7 @@ internal fun Screen(
                     Winner()
                     Log.d("HomeScreen", "Winner")
                 } else if (statusPlayer.isAlive == true) {
-                    state.player?.also {
+                    state.statusPlayer?.also {
                         HomeContent(
                             padding = padding,
                             player = it

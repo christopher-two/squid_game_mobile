@@ -9,4 +9,6 @@ interface RealtimeDatabase {
     ): Flow<StatusPlayer>
 
     fun updatePlayerStatus(updates: Map<String, Any>, playerId: String)
+
+    fun createPlayer(player: StatusPlayer)
 }

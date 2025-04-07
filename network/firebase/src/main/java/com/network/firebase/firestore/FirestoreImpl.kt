@@ -4,6 +4,8 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.network.firebase.models.Player
 import kotlinx.coroutines.tasks.await
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 class FirestoreImpl : Firestore {
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -20,5 +22,12 @@ class FirestoreImpl : Firestore {
             Log.e("FirestoreImpl", "getPlayer: ${e.message}")
             null
         }
+    }
+    @OptIn(ExperimentalUuidApi::class)
+    override suspend fun createPlayer(player: Player) {
+        db.collection("boys")
+            .document(Uuid.random().toString())
+            .set(player)
+            .await()
     }
 }

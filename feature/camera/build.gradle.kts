@@ -47,6 +47,7 @@ dependencies {
     //MODULES
     implementation(project(":shared:utils"))
     implementation(project(":shared:ui"))
+    implementation(project(":network:firebase"))
 
     //KOIN
     implementation(platform(libs.koin.bom))

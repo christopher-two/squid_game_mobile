@@ -1,13 +1,10 @@
 package com.network.firebase.realtime
 
 import android.util.Log
-import com.google.firebase.Firebase // Puedes usar esta o la otra, sé consistente
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database // KTX helper
-import com.google.firebase.database.getValue // KTX helper
 import com.network.firebase.models.StatusPlayer
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -27,9 +24,9 @@ class RealtimeDatabaseImpl : RealtimeDatabase {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("RealtimeDB", "Snapshot received: $snapshot")
                 try {
-                    val isAlive = snapshot.child("isAlive").getValue(Boolean::class.java) ?: false
-                    val isWinner = snapshot.child("isWinner").getValue(Boolean::class.java) ?: false
-                    val isActive = snapshot.child("isActive").getValue(Boolean::class.java) ?: false
+                    val isAlive = snapshot.child("alive").getValue(Boolean::class.java) ?: false
+                    val isWinner = snapshot.child("winner").getValue(Boolean::class.java) ?: false
+                    val isActive = snapshot.child("active").getValue(Boolean::class.java) ?: false
 
                     val status = StatusPlayer(isAlive, isWinner, isActive)
                     Log.d("RealtimeDB", "Deserialized Status: $status")
@@ -40,7 +37,11 @@ class RealtimeDatabaseImpl : RealtimeDatabase {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("RealtimeDB", "Firebase listener cancelled: ${error.message}", error.toException())
+                Log.e(
+                    "RealtimeDB",
+                    "Firebase listener cancelled: ${error.message}",
+                    error.toException()
+                )
                 close(error.toException())
             }
         }
@@ -61,6 +62,17 @@ class RealtimeDatabaseImpl : RealtimeDatabase {
             }
             .addOnFailureListener { e ->
                 Log.e("Firebase", "Error al actualizar: ${e.message}")
+            }
+    }
+
+    override fun createPlayer(player: StatusPlayer) {
+        val playersRef = database.getReference("players")
+        playersRef.child(player.uuid.toString()).setValue(player)
+            .addOnSuccessListener {
+                Log.d("Firebase", "Jugador creado exitosamente")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firebase", "Error al crear jugador: ${e.message}")
             }
     }
 }

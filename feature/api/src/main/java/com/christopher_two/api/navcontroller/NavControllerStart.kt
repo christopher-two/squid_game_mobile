@@ -28,17 +28,10 @@ fun NavControllerStart(
     ) {
         composable(route = RoutesStart.Start.route) { StartScreen(navController) }
         composable(route = RoutesStart.Login.route) { LoginScreen(navController) }
-        composable(
-            route = "${RoutesStart.Camera.route}/{args}",
-            arguments = listOf(navArgument("args") {
-                type = NavType.EnumType<KeysTensorflow>(KeysTensorflow::class.java)
-            })
-        ) { args ->
-            val args = args.arguments?.get("args") as KeysTensorflow
+        composable(route = RoutesStart.Camera.route,) {
             CameraScreen(
                 context = context,
                 navController = navController,
-                model = args
             )
         }
         composable(

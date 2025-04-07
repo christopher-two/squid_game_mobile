@@ -30,6 +30,7 @@ dataStore = "1.1.4"
 play-services = "18.6.0"
 
 [libraries]
+firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
 play-services-base = { group = "com.google.android.gms", name = "play-services-base", version.ref = "play-services" }
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 datastore-preference = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }

@@ -33,13 +33,14 @@ import com.home.R
 import com.home.states.HomeUiState
 import com.home.screen.HomeViewModel
 import com.network.firebase.models.Player
+import com.network.firebase.models.StatusPlayer
 import com.shared.ui.DiamondShape
 import com.shared.ui.components.BackgroundAnimated
 
 @Composable
 internal fun HomeContent(
     padding: PaddingValues,
-    player: Player
+    player: StatusPlayer
 ) {
     LazyColumn(
         modifier = Modifier
@@ -72,7 +73,7 @@ internal fun HomeContent(
                     )
 
                     Text(
-                        text = player.numPlayer,
+                        text = player.numPlayer ?: "999",
                         color = Color.White,
                         fontSize = 70.sp,
                         fontWeight = FontWeight.Bold,

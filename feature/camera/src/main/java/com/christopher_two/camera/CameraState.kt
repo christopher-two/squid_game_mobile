@@ -9,5 +9,6 @@ data class CameraState(
     val classificationNumber: String = "",
     val classifier: ImageClassifier? = null,
     val isLoading: Boolean = true,
-    val isCameraPermissionGranted: Boolean = false
+    val isCameraPermissionGranted: Boolean = false,
+    val uuid: String? = null
 )

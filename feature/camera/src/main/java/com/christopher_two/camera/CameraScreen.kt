@@ -21,21 +21,16 @@ import com.shared.utils.enums.KeysTensorflow
 import com.shared.utils.routes.RoutesStart
 import kotlinx.coroutines.delay
 import org.koin.compose.viewmodel.koinViewModel
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun CameraScreen(
     viewModel: CameraViewModel = koinViewModel(),
     context: Context,
     navController: NavController,
-    model: KeysTensorflow
 ) {
-    LaunchedEffect(Unit) {
-        viewModel.loadData(
-            model = model.model,
-            labelFile = model.label
-        )
-        viewModel.update { copy(isLoading = false) }
-    }
     var isCompleteAnimation by remember { mutableStateOf(true) }
     val state by viewModel.state.collectAsState()
     val hasFrontCamera = remember(context) {
@@ -78,9 +73,9 @@ fun CameraScreen(
         )
     else PermissionDenied()
 
-    if (state.classificationNumber != "") {
+    state.uuid?.let { uuid ->
         navController.navigate(
-            route = "${RoutesStart.Home.route}/${state.classificationNumber}",
+            route = "${RoutesStart.Home.route}/${uuid}",
         )
     }
 }
